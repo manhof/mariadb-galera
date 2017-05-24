@@ -16,7 +16,6 @@ elif [[ $serverbuild == *"centos"* ]]
 	rm -rf $location
 	wsrep_provider=/usr/lib64/galera/libgalera_smm.so
 else
-
 	echo "Cannot determine Build Type... Exiting" >> /home/test
 	exit 3
 fi
