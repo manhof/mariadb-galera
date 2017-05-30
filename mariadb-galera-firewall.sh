@@ -1,5 +1,7 @@
 #!/bin/bash
-serverbuild= gawk -F= '/^ID=/{print $2}' /etc/os-release
+gawk -F= '/^ID=/{print $2}' /etc/os-release > /home/id.txt
+serverbuild=$(cat /home/id.txt)
+echo " This is the Server Build: " $serverbuild >> /home/test
 service="Mariadb-Galera"
 title= "Mariadb Clustering Ports"
 description="Mariadb Ports required for running Mariadb-Galera which include 3306,4567,4568,4444/tcp & 4567/udp"
