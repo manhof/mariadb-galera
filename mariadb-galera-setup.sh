@@ -1,5 +1,7 @@
 #!/bin/bash
-serverbuild= gawk -F= '/^ID=/{print $2}' /etc/os-release
+gawk -F= '/^ID=/{print $2}' /etc/os-release > /home/id.txt
+serverbuild=$(cat /home/id.txt)
+echo " This is the Server Build: " $serverbuild >> /home/test
 masterb=$1
 cluster_name=$2
 pub=$3
