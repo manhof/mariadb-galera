@@ -3,7 +3,7 @@ gawk -F= '/^ID=/{print $2}' /etc/os-release > /home/id.txt
 serverbuild=$(cat /home/id.txt)
 echo " This is the Server Build: " $serverbuild >> /home/test
 service="Mariadb-Galera"
-title= "Mariadb Clustering Ports"
+title="Mariadb Clustering Ports"
 description="Mariadb Ports required for running Mariadb-Galera which include 3306,4567,4568,4444/tcp & 4567/udp"
 port1="3306"
 port2="4567"
@@ -18,7 +18,7 @@ if [[ $serverbuild == *"ubuntu"* ]]
     echo "title=$title" >> /etc/ufw/applications.d/$service
     echo "description=$description" >> /etc/ufw/applications.d/$service
     echo "ports=$port1,$port2,$port3,$port4/$protocol|$port2/$protocol2" >> /etc/ufw/applications.d/$service
-    ufw update $service
+    ufw app update $service
 	ufw allow in OpenSSH
     ufw allow in $service
     ufw enable
