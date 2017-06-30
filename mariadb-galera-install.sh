@@ -1,5 +1,6 @@
 #!/bin/bash
-datastore=$1
+dsbool=$1
+datastore=$2
 # Creating a new server and launching it
 gawk -F= '/^ID=/{print $2}' /etc/os-release > /home/id.txt
 serverbuild=$(cat /home/id.txt)
@@ -61,10 +62,12 @@ else
  echo "Cannot determine Build Type... Exiting" >> /home/test
  exit 3
 fi
-systemctl stop mysql
-rsync -av /var/lib/mysql $datastore
-mv /var/lib/mysql /var/lib/mysql.bak
-sed -i -e 's+/var/lib/mysql+/mnt/mariadb/mysql+g' /etc/mysql/my.cnf
-	
+if [[ "dsbool" = True ]]
+ then
+  systemctl stop mysql
+  rsync -av /var/lib/mysql $datastore
+  mv /var/lib/mysql /var/lib/mysql.bak
+  sed -i -e 's+/var/lib/mysql+/mnt/mariadb/mysql+g' /etc/mysql/my.cnf
+fi	
 	
    
