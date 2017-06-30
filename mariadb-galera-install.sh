@@ -8,17 +8,18 @@ if [[ $serverbuild == *"ubuntu"* ]]
   apt-get install software-properties-common -y 
   apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
   add-apt-repository 'deb [arch=amd64,i386,ppc64el] https://mirrors.evowise.com/mariadb/repo/10.1/ubuntu xenial main'
-  apt update
+  apt update -y
   openssl rand -base64 32 > /home/pw.txt
   pass=$( cat /home/pw.txt)
+  echo "Root Password has been created" >> /home/test
   echo $pass >> /home/test                
   export DEBIAN_FRONTEND=noninteractive
   debconf-set-selections <<< 'mariadb-server-10.1 mysql-server/root_password password PASS'
   debconf-set-selections <<< 'mariadb-server-10.1 mysql-server/root_password_again password PASS'
-  apt install -y mariadb-server
+  apt-get install mariadb-server -y
   mysql -uroot -pPASS -e "SET PASSWORD = PASSWORD('$pass');"
-  rm -rf /home/pw.txt
-  apt install -y rsync
+  #rm -rf /home/pw.txt
+  apt-get install rsync -y
 elif [[ $serverbuild == *"centos"* ]]
  then
   echo "# MariaDB 10.1 CentOS repository list - created 2017-05-22 16:39 UTC" >> /etc/yum.repos.d/MariaDB.repo
