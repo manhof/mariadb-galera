@@ -31,7 +31,7 @@ echo "" >> $location
 if [ $masterb = true ]
  then
 	echo "Setting Up Server As Master Server" >> /home/test
-	echo "Galera Provider Configuration" >> $location
+	echo "# Galera Provider Configuration" >> $location
 	echo "wsrep_on=ON" >> $location
     echo "wsrep_provider=$wsrep_provider" >> $location
 	echo "" >> $location
