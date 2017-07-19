@@ -28,7 +28,7 @@ echo "default-storage-engine=innodb" >> $location
 echo "innodb_autoinc_lock_mode=2" >> $location
 echo "bind-address=0.0.0.0" >> $location
 echo "" >> $location
-if [ $masterb -eq 1 ]
+if [ $masterb = true ]
  then
 	echo "Setting Up Server As Master Server" >> /home/test
 	echo "Galera Provider Configuration" >> $location
