@@ -49,7 +49,7 @@ if [ $masterb = true ]
     galera_new_cluster
 else
 	echo "Setting Up Server as slave" >> /home/test
-	echo "Galera Provider Configuration" >> $location
+	echo "# Galera Provider Configuration" >> $location
     echo "wsrep_on=ON" >> $location
     echo "wsrep_provider=$wsrep_provider" >> $location
 	echo "" >> $location
